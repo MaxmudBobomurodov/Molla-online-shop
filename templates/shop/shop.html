@@ -47,75 +47,82 @@
 
                         <div class="products mb-3">
                             <div class="row justify-content-center">
-                                <div class="col-6 col-md-4 col-lg-4">
-                                    <div class="product product-7 text-center">
-                                        <figure class="product-media">
-                                            <span class="product-label label-new">New</span>
-                                            {% if products %}
-                                                <a href="product.html">
-                                                    {% for product in products %}
-                                                        <img src="{{ product.image.url }}" alt="Product image"
-                                                             class="product-image">
+                                {% for product in products %}
+                                    <div class="col-6 col-md-4 col-lg-4">
+                                        <div class="product product-7 text-center">
+                                            <figure class="product-media">
+                                                <span class="product-label label-new">New</span>
+                                                <a href="{% url 'products:product-detail' %}">
+                                                    <img src="{{ product.image.url }}" alt="Product image"
+                                                         class="product-image">
+                                                </a>
 
-                                                        </a>
+                                                <div class="product-action-vertical">
+                                                    <a href="#"
+                                                       class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
+                                                    <a href="popup/quickView.html"
+                                                       class="btn-product-icon btn-quickview"
+                                                       title="Quick view"><span>Quick view</span></a>
+                                                    <a href="#" class="btn-product-icon btn-compare"
+                                                       title="Compare"><span>Compare</span></a>
+                                                </div><!-- End .product-action-vertical -->
+
+                                                <div class="product-action">
+                                                    <a href="#"
+                                                       class="btn-product btn-cart"><span>add to cart</span></a>
+                                                </div><!-- End .product-action -->
+                                            </figure><!-- End .product-media -->
+
+                                            <div class="product-body">
+                                                <div class="product-cat">
+
+                                                    <a href="#">{{ product.brand }},</a>
+
+                                                </div><!-- End .product-cat -->
+                                                <h3 class="product-title">
+
+                                                    <a
+                                                            href="product.html">{{ product.title }}</a></h3>
+                                                <!-- End .product-title -->
+
+                                                <div class="product-price">
+                                                    {{ product.price }}
+                                                </div><!-- End .product-price -->
+                                                <div class="ratings-container">
+                                                    <div class="ratings">
+                                                        <div class="ratings-val" style="width: 20%;"></div>
+                                                        <!-- End .ratings-val -->
+                                                    </div><!-- End .ratings -->
+                                                    <span class="ratings-text">( 2 Reviews )</span>
+                                                </div><!-- End .rating-container -->
+
+                                                <div class="product-nav product-nav-thumbs">
+
+                                                    <a href="#" class="active">
+                                                        <img src="{{ product.image.url }}"
+                                                             alt="product desc">
+
+                                                    </a>
+
+                                                    <a href="#">
+                                                        <img src="{{ product.image.url }}"
+                                                             alt="product desc">
+                                                    </a>
+
+                                                    <a href="#">
+                                                        <img src="{{ product.image.url }}"
+                                                             alt="product desc">
+                                                    </a>
 
 
-                                                        <div class="product-action-vertical">
-                                                            <a href="#"
-                                                               class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
-                                                            <a href="popup/quickView.html"
-                                                               class="btn-product-icon btn-quickview"
-                                                               title="Quick view"><span>Quick view</span></a>
-                                                            <a href="#" class="btn-product-icon btn-compare"
-                                                               title="Compare"><span>Compare</span></a>
-                                                        </div><!-- End .product-action-vertical -->
+                                                </div><!-- End .product-nav -->
 
-                                                        <div class="product-action">
-                                                            <a href="#"
-                                                               class="btn-product btn-cart"><span>add to cart</span></a>
-                                                        </div><!-- End .product-action -->
-                                                        </figure><!-- End .product-media -->
-
-                                                        <div class="product-body">
-                                                        <div class="product-cat">
-                                                            <a href="#">{{ product.brand }}</a>
-                                                        </div><!-- End .product-cat -->
-                                                        <h3 class="product-title"><a
-                                                                href="product.html">{{ product.title }}</a></h3>
-                                                        <!-- End .product-title -->
-                                                        <div class="product-price">
-                                                            {{ product.price }}
-                                                        </div><!-- End .product-price -->
-                                                        <div class="ratings-container">
-                                                            <div class="ratings">
-                                                                <div class="ratings-val" style="width: 20%;"></div>
-                                                                <!-- End .ratings-val -->
-                                                            </div><!-- End .ratings -->
-                                                            <span class="ratings-text">( 2 Reviews )</span>
-                                                        </div><!-- End .rating-container -->
-
-                                                        <div class="product-nav product-nav-thumbs">
-                                                        <a href="#" class="active">
-                                                            <img src="{{ product.image.url }}"
-                                                                 alt="product desc">
-                                                        </a>
-                                                        <a href="#">
-                                                            <img src="{{ product.image.url }}"
-                                                                 alt="product desc">
-                                                        </a>
-
-                                                        <a href="#">
-                                                            <img src="{{ product.image.url }}"
-                                                                 alt="product desc">
-                                                        </a>
-                                                    {% endfor %}
-                                            {% endif %}
-                                            </div><!-- End .product-nav -->
                                             </div><!-- End .product-body -->
-                                    </div><!-- End .product -->
-                                </div><!-- End .col-sm-6 col-lg-4 -->
-
+                                        </div><!-- End .product -->
+                                    </div><!-- End .col-sm-6 col-lg-4 -->
+                                {% endfor %}
                             </div><!-- End .row -->
+
                         </div><!-- End .products -->
 
                         <nav aria-label="Page navigation">
@@ -156,23 +163,27 @@
                                 </h3><!-- End .widget-title -->
 
 
-                                    <div class="collapse show" id="widget-1">
-                                        <div class="widget-body">
+                                <div class="collapse show" id="widget-1">
+                                    <div class="widget-body">
+
+                                        <div class="filter-items filter-items-count">
                                             {% for category in categories %}
-                                            <div class="filter-items filter-items-count">
                                                 <div class="filter-item">
                                                     <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input"
-                                                               id="cat-{{ category.id }}">
-                                                        <label class="custom-control-label"
-                                                               for="cat-1">{{ category.title }}</label>
+                                                        <input {% if request.GET.cat == category.id|stringformat:"s" %}checked{% endif %}
+                                                               type="checkbox" class="custom-control-input" id="cat-1">
+                                                        <label class="custom-control-label" for="cat-1">
+                                                            <a style="color: black"
+                                                               href="?cat={{ category.id }}">{{ category.title }}</a>
+                                                        </label>
                                                     </div><!-- End .custom-checkbox -->
                                                     <span class="item-count">{{ category.products.count }}</span>
                                                 </div><!-- End .filter-item -->
-                                            </div><!-- End .filter-items -->
                                             {% endfor %}
-                                        </div><!-- End .widget-body -->
-                                    </div><!-- End .collapse -->
+                                        </div><!-- End .filter-items -->
+
+                                    </div><!-- End .widget-body -->
+                                </div><!-- End .collapse -->
 
                             </div><!-- End .widget -->
 
@@ -186,20 +197,23 @@
 
                                 <div class="collapse show" id="widget-2">
 
-                                        <div class="widget-body">
-                                            {% for size in sizes %}
+                                    <div class="widget-body">
+                                        {% for size in sizes %}
                                             <div class="filter-items">
                                                 <div class="filter-item">
                                                     <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input"
+                                                        <input {% if request.GET.size == size.id|stringformat:"s" %}checked{% endif %}
+                                                               type="checkbox" class="custom-control-input"
                                                                id="size-{{ size.id }}">
-                                                        <label class="custom-control-label"
-                                                               for="size-1">{{ size.title }}</label>
+                                                        <label class="custom-control-label" for="size-1">
+                                                            <a style="color: black"
+                                                               href="?size={{ size.id }}#size-{{ size.id }}">{{ size.title }}</a>
+                                                        </label>
                                                     </div><!-- End .custom-checkbox -->
                                                 </div><!-- End .filter-item -->
                                             </div><!-- End .filter-items -->
-                                            {% endfor %}
-                                        </div><!-- End .widget-body -->
+                                        {% endfor %}
+                                    </div><!-- End .widget-body -->
 
                                 </div><!-- End .collapse -->
                             </div><!-- End .widget -->
@@ -214,14 +228,17 @@
 
                                 <div class="collapse show" id="widget-3">
 
-                                        <div class="widget-body">
-                                            <div class="filter-colors">
-                                                {% for color in colors %}
-                                                <a href="#" style="background: {{ color.code }};"><span
-                                                        class="sr-only">{{ color.title }}</span></a>
-                                                {% endfor %}
-                                            </div><!-- End .filter-colors -->
-                                        </div><!-- End .widget-body -->
+                                    <div class="widget-body">
+                                        <div class="filter-colors">
+                                            {% for color in colors %}
+                                                <a href="?color={{ color.id }}#color-{{ color.id }}"
+                                                   class="{% if request.GET.color == color.id|stringformat:"s" %}selected{% endif %}"
+                                                   style="background: {{ color.code }};"><span
+                                                        class="sr-only">{{ color.title }} </span>
+                                                </a>
+                                            {% endfor %}
+                                        </div><!-- End .filter-colors -->
+                                    </div><!-- End .widget-body -->
 
                                 </div><!-- End .collapse -->
                             </div><!-- End .widget -->
@@ -237,14 +254,19 @@
                                 <div class="collapse show" id="widget-4">
                                     <div class="widget-body">
                                         {% for brand in brands %}
-                                        <div class="filter-items">
-                                            <div class="filter-item">
-                                                <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input" id="brand-{{ brand.id }}">
-                                                    <label class="custom-control-label" for="brand-1">{{ brand.name }}</label>
-                                                </div><!-- End .custom-checkbox -->
-                                            </div><!-- End .filter-item -->
-                                        </div><!-- End .filter-items -->
+                                            <div class="filter-items">
+                                                <div class="filter-item">
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input {% if request.GET.br == brand.id|stringformat:"s" %}checked{% endif %}
+                                                                type="checkbox" class="custom-control-input"
+                                                               id="brand-{{ brand.id }}">
+                                                        <label class="custom-control-label"
+                                                               for="brand-1">
+                                                            <a style="color: black"  href="?br={{ brand.id }}#brand-{{ brand.id }}">{{ brand.name }}</a>
+                                                        </label>
+                                                    </div><!-- End .custom-checkbox -->
+                                                </div><!-- End .filter-item -->
+                                            </div><!-- End .filter-items -->
                                         {% endfor %}
                                     </div><!-- End .widget-body -->
                                 </div><!-- End .collapse -->
